@@ -352,7 +352,7 @@ Num único repositório poderemos ter várias branches. Normalmente essas branch
 ***Agora há pouco falamos sobre as issues. Que tal descrever melhor como trabalhar com as Issues?***
 
 ## Issues
-
+teset
 As issues são uma forma de rastrear tarefas, melhorias, bugs e outras **solicitações**, que posteriormente darão origem a uma nova branch. Elas são usadas para rastrear tudo o que precisa ser feito em um projeto. As issues podem ser criadas por qualquer pessoa que tenha acesso ao repositório. Elas podem ser atribuídas a membros do projeto, podem ser marcadas com rótulos, podem ser associadas a uma milestone, podem ser fechadas com um pull request, entre outras funcionalidades.
 
 Para facilitar a organização das Issues, podemos usar o **Project**. O Project é uma forma de organizar as issues em colunas. Cada coluna pode representar uma etapa do desenvolvimento do projeto, como por exemplo, `To do`, `Doing`, `Testing`, `Done`. As issues podem ser movidas entre as colunas, de acordo com o andamento do projeto. É uma forma de gestão visual do projeto, que facilita o acompanhamento do andamento das tarefas, tanto por parte de quem está desenvolvendo, gerenciando, revisando, testando, entre outros.
