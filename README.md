@@ -349,6 +349,8 @@ Num único repositório poderemos ter várias branches. Normalmente essas branch
 
 > _Também vale ressaltar que, além da branch `master` ou `main`, uma boa prática a ser seguida é ter uma branch que manterá uma versão do sistema a ler lançada, ou seja, uma branch que serve para gerar versões da aplicação que serão lançadas. Neste caso, também na [Fábrica de Software](https://github.com/fabricadesoftware-ifc) utilizamos a branch `development`. Todas os `pull requests` que são feitos têm como destino esta branch. Poucas pessoas estão autorizadas a fazer `pull request` tendo como origem a branch `development` e como destino a branch `main`. A branch `development` é utilizada, neste caso, portanto, para gerar versão do sistema que será posteriormente enviada para a `main`._
 
+> Vale também mencionar que, para que a branch `development` não seja apagada **nunca**, é preciso criar uma regra para que isso não aconteça.
+
 ***Agora há pouco falamos sobre as issues. Que tal descrever melhor como trabalhar com as Issues?***
 
 ## Issues
