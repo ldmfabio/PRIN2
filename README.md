@@ -49,7 +49,8 @@ Antes de começar, saiba que além deste material elaborado para o segundo ano d
 
 1. Uso do Git
    1. [GitHub](#github)
-   2. Git via terminal
+   2. [Git via terminal](#git-via-terminal)
+      1. [Configuração do Git](#configuração-do-git)
 2. Uso do venv (Virtual Environment - Ambiente Virtual)
    1. Instalação
    2. Criação de um ambiente virtual
@@ -139,6 +140,16 @@ Para criar um repositório, basta acessar o GitHub, navegar até a aba `Reposito
 Após criar um repositório, você terá a possibilidade de adicionar arquivos no repositório, usando a interface do próprio GitHub. Contudo, para facilitar a nossa, vida, podemos clonar o repositório usando o terminal e, após, abrir o repositório clonado diretamente no VSCode.
 
 > Lembre-se: O GitHub é uma aplicação que trabalha sob a plataforma que incorpora os recursos de controle de versões do `git` para que possam ser usados colaborativamente. O git é um software de controle de versões, apenas. Outras alternativas ao GitHub, que também usam o `git` são, por exemplo: Bitbucket, GitLab, Gitea...
+
+## Git ignore
+
+O arquivo `.gitignore` é um arquivo que informa ao Git quais arquivos e pastas devem ser ignorados. Ou seja, o Git não rastreará os arquivos e pastas que estiverem no arquivo `.gitignore`. Isso é útil para arquivos e pastas que não queremos que sejam rastreados pelo Git, como arquivos de configuração, arquivos temporários, arquivos de log, entre outros.
+
+Para criar um arquivo `.gitignore`, basta criar um arquivo com o nome `.gitignore` na raiz do repositório. Após criar o arquivo, informe os arquivos e pastas que devem ser ignorados. Por exemplo, se você deseja ignorar a pasta `node_modules`, basta informar `node_modules` no arquivo `.gitignore`.
+
+Para facilitar a criação do arquivo `.gitignore`, você pode acessar o site [gitignore.io](https://www.gitignore.io/) e informar o sistema operacional, a linguagem de programação, o editor de texto que você está usando, o framework e outros recursos adicionais. Após informar essas informações, o site irá gerar um arquivo `.gitignore` com os arquivos e pastas que devem ser ignorados.
+
+Ao gerar o conteúdo do arquivo `.gitignore`, basta copiar o conteúdo gerado e colar no arquivo `.gitignore` que está na raiz do repositório, nos arquivos do repositório que você está trabalhando localmente.
 
 ## Clonar um repositório
 
@@ -245,6 +256,12 @@ Esses padrões são importantes para que você e outras pessoas que trabalham no
 - `ci`: para alterações em arquivos de configuração de CI
 - `build`: para alterações em arquivos de configuração de build
 
+### ***Para gravar:***
+Atente-se a imagem abaixo, com as possibilidades de commit. Grave esta imagem como uma paisagem que você nunca mais esquecerá!
+![Padrões de Commit](/img/padroes-commit.png)
+
+
+
 Ou seja, digamos que você possui uma tarefa de adicionar um botão no seu site. Você pode fazer um commit com a mensagem `feat: Adiciona botão de contato`. Isso facilitará a compreensão do que foi feito em cada commit.
 
 Ainda, caso esteja usando as issues do GitHub, você pode fazer referência a uma issue no seu commit. Por exemplo, se você está trabalhando na issue #1, você pode fazer um commit com a mensagem `feat: Adiciona botão de contato. Closes #1`. Isso fará com que a issue seja fechada automaticamente quando o commit for mergeado com a branch principal.
@@ -267,9 +284,90 @@ Após este comando ser executado, você então estará sincronizando os arquivos
 
 ## Atualizar repositório local
 
-Após fazer um push, precisamos atualizar o repositório local. Para atualizar o repositório local, usamos o comando `git pull nome-do-repositorio nome-da-branch`.
+Ao trabalhar em uma equipe, é comum que outras pessoas façam alterações nos arquivos do repositório remoto. Para atualizar o repositório local, usamos o comando `git pull nome-do-repositorio nome-da-branch`.
 
 ```bash
 git pull nome-do-repositorio nome-da-branch
 ```
+
+O comando `git pull` faz um pull no repositório remoto. O `nome-do-repositorio` é o nome do repositório remoto que será feito o pull. O `nome-da-branch` é o nome da branch que será feito o pull.
+
+Imagine que você será o revisor de alterações que serão realizadas em um código, e, portanto, deverá atualizar o repositório local, especificando qual branch você deseja atualizar. Para isso, basta executar o comando `git pull nome-do-repositorio nome-da-branch`.
+
+```bash
+   git pull nome-do-repositorio nome-da-branch
+```
+
+Trazendo para alguma possível realidade do seu projeto, imagine que o código que você executará via terminal será:
+
+```bash
+   git pull origin main
+```
+
+Ou, imaginando a situação de um revisor de código que validará a funcionalidade desenvolvida, o comando poderá ser:
+
+```bash
+   git pull origin feature12
+```
+
+## Branches
+
+***Mas afinal, o que são as Branches?***
+
+Branches são ramificações do código. Elas são úteis para que possamos trabalhar em novas funcionalidades, correções de bugs, melhorias de performance, entre outros, sem afetar o código principal. Ou seja, podemos trabalhar em novas funcionalidades, correções de bugs, melhorias de performance, entre outros, sem afetar o código principal.
+
+Para criar uma branch, usamos o comando `git branch nome-da-branch`.
+
+```bash
+git branch nome-da-branch
+```
+
+Dessa forma, a versão oficial do código é mantida na branch principal, enquanto as novas funcionalidades, correções de bugs, melhorias de performance, entre outros, são desenvolvidas em branches separadas.
+
+Para listar as branches, usamos o comando `git branch`.
+
+```bash
+git branch
+```
+
+O comando `git branch` lista as branches que estão no repositório local. A branch que estiver com um asterisco é a branch que está sendo usada no momento.
+
+Para mudar de branch, usamos o comando `git checkout nome-da-branch`.
+
+```bash
+git checkout nome-da-branch
+```
+
+O comando `git checkout` muda de branch. O `nome-da-branch` é o nome da branch que será mudada.
+
+
+Num único repositório poderemos ter várias branches. Normalmente essas branches estão relacionadas com as _issues_ que foram atribuídas para os membros do projeto. Por exemplo, se você está trabalhhando na issue #12, você pode criar uma branch chamada `feat12` e trabalhar nela. Após terminar o trabalho, você pode fazer um pull request para a branch principal, que normalmente é a `main` ou `master`.
+
+> _No exemplo foi citado feat, porém poderia ser qualquer uma das categorias mencionadas anteriormente, extraídas da figura sobre padrões de commits, disponível na [imagem sobre os padrões de commit](img/padroes-commit.png)._
+
+> Na [Fábrica de Software do IFC-Campus Araquari](https://github.com/fabricadesoftware-ifc) é comum o uso de branches. Cada issue é atribuída a um fabricador, ou fabricadora, e é associado a um projeto em desenvolvimento. A issue é movida entre as colunas, de acordo com o andamento do projeto. Quando a issue é finalizada, ela é fechada com um pull request.
+
+> _Também vale ressaltar que, além da branch `master` ou `main`, uma boa prática a ser seguida é ter uma branch que manterá uma versão do sistema a ler lançada, ou seja, uma branch que serve para gerar versões da aplicação que serão lançadas. Neste caso, também na [Fábrica de Software](https://github.com/fabricadesoftware-ifc) utilizamos a branch `development`. Todas os `pull requests` que são feitos têm como destino esta branch. Poucas pessoas estão autorizadas a fazer `pull request` tendo como origem a branch `development` e como destino a branch `main`. A branch `development` é utilizada, neste caso, portanto, para gerar versão do sistema que será posteriormente enviada para a `main`._
+
+***Agora há pouco falamos sobre as issues. Que tal descrever melhor como trabalhar com as Issues?***
+
+## Issues
+
+As issues são uma forma de rastrear tarefas, melhorias, bugs e outras **solicitações**, que posteriormente darão origem a uma nova branch. Elas são usadas para rastrear tudo o que precisa ser feito em um projeto. As issues podem ser criadas por qualquer pessoa que tenha acesso ao repositório. Elas podem ser atribuídas a membros do projeto, podem ser marcadas com rótulos, podem ser associadas a uma milestone, podem ser fechadas com um pull request, entre outras funcionalidades.
+
+Para facilitar a organização das Issues, podemos usar o **Project**. O Project é uma forma de organizar as issues em colunas. Cada coluna pode representar uma etapa do desenvolvimento do projeto, como por exemplo, `To do`, `Doing`, `Testing`, `Done`. As issues podem ser movidas entre as colunas, de acordo com o andamento do projeto. É uma forma de gestão visual do projeto, que facilita o acompanhamento do andamento das tarefas, tanto por parte de quem está desenvolvendo, gerenciando, revisando, testando, entre outros.
+
+Na [Fábrica de Software do IFC-Campus Araquari](https://github.com/fabricadesoftware-ifc), por exemplo, o uso das issues é uma prática comum. Cada issue é atribuída a um fabricador, ou fabricadora, e é associado a um projeto em desenvolvimento. A issue é movida entre as colunas, de acordo com o andamento do projeto. Quando a issue é finalizada, ela é fechada com um pull request. Entretanto, o project de um dos projetos da Fábrica de Software possui algumas colunas diferentes das citadas anteriormente, conforme apresentadas na imagem a seguir.
+
+![Exemplo de Project](img/project.png)
+
+Uma issue, quando finalizada, pode ser fechada com um **Pull Request**.
+
+## Pull Request
+
+Um pull request é uma solicitação de contribuição. Ele é usado para solicitar que as alterações feitas em uma branch sejam mergeadas com a branch desejada, que receberá, de acordo com as regras estabelecidas pela equipe do projeto, as melhorias desenvolvidas pela equipe. Um pull request pode ser revisado, aprovado, recusado, comentado, entre outras ações. Após ser aprovado, o pull request é mergeado com a branch e a issue é fechada automaticamente.
+
+
+
+## Merge
 
