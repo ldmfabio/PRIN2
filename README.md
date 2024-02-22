@@ -367,7 +367,35 @@ Uma issue, quando finalizada, pode ser fechada com um **Pull Request**.
 
 Um pull request é uma solicitação de contribuição. Ele é usado para solicitar que as alterações feitas em uma branch sejam mergeadas com a branch desejada, que receberá, de acordo com as regras estabelecidas pela equipe do projeto, as melhorias desenvolvidas pela equipe. Um pull request pode ser revisado, aprovado, recusado, comentado, entre outras ações. Após ser aprovado, o pull request é mergeado com a branch e a issue é fechada automaticamente.
 
+Observe, na imagem abaixo, que existem quatro _tasks_ para serem desenvolvidas, sendo que duas estão em andamento. Quando a _task_ com o status `In progress` for finalizada, ela será movida para a coluna `In review`, que é quando alguém que faz parte do projeto, de preferência não o próprio desenvolvedor que solucionou a `task`, fará a revisão do código.
 
+![Kanban com Issues em andamento](img/kanban-branch.png)
+
+O processo que seguiu-se, neste exemplo abaixo, foi o seguinte:
+
+1. Criação de um novo `Draft` na coluna `Backlog`
+2. O `Draft` foi convertido em uma nova `Issue`
+3. A `Issue` foi movida para a coluna `In progress` pelo(a) desenvolvedor(a) que a requisitou ou que foi atribuído(a)
+4. O desenvolvedor executou o comando `git checkout development` para mudar para a branch `development`, que é branch que mantém uma versão do sistema a ler lançada
+5. O desenvolvedor executou o comando `git pull origin development` para atualizar a branch `development` com as alterações que foram feitas por outros membros do projeto
+6. O desenvolvedor executou o comando `git checkout -b feature-3` para criar uma nova branch chamada `feature-3`
+7. O desenvolvedor implementou então as alterações correspondentes com a `Issue`, adicionou imagens, arquivos, ou qualquer recurso que condiza com o especificado na `Issue`
+8. O desenvolvedor executou o comando `git add .` para adicionar todos os arquivos que foram criados ou alterados
+9. O desenvolvedor executou o comando `git commit -m "feat: Especificado como realizar checkout e criação de nova branch`
+10. O desenvolvedor executou o comando `git push origin feature-3` para enviar as alterações para o repositório remoto
+
+Pronto! Agora o código foi enviado para o GitHub e está na branch `feature-3`. As branches ativas no repositório remoto agora são `main`, `development` e `feature-3` (A `feature-2` está ali pois foi anteriormente pushada pelo desenvolvedor e ainda não foi finalizada).
+
+A imagem abaixo apresenta as branches que estão ativas no repositório remoto.
+
+![Branches ativas no repositório remoto](img/branches.png)
+
+Na parte superior da imagem acima, há uma mensagem de aviso, indicando que a branch `feature-3` foi recentemente pushada para o repositório remoto. No lado direito deste aviso há um botão com a mensagem para realizar o `Compare & pull request`. Este botão é clicado para que o desenvolvedor possa criar um novo `Pull Request`. Clicando neste botão, o desenvolvedor será direcionado para a página de criação de um novo `Pull Request`, que corresponde com a imagem abaixo.
+
+![Criação de um novo Pull Request](img/pull-request.png)
 
 ## Merge
 
+aaa
+
+asa
