@@ -381,7 +381,7 @@ O processo que seguiu-se, neste exemplo abaixo, foi o seguinte:
 6. O desenvolvedor executou o comando `git checkout -b feature-3` para criar uma nova branch chamada `feature-3`
 7. O desenvolvedor implementou então as alterações correspondentes com a `Issue`, adicionou imagens, arquivos, ou qualquer recurso que condiza com o especificado na `Issue`
 8. O desenvolvedor executou o comando `git add .` para adicionar todos os arquivos que foram criados ou alterados
-9. O desenvolvedor executou o comando `git commit -m "feat: Especificado como realizar checkout e criação de nova branch
+9. O desenvolvedor executou o comando `git commit -m "feat: Especificado como realizar checkout e criação de nova branch`
 10. O desenvolvedor executou o comando `git push origin feature-3` para enviar as alterações para o repositório remoto
 
 Pronto! Agora o código foi enviado para o GitHub e está na branch `feature-3`. As branches ativas no repositório remoto agora são `main`, `development` e `feature-3` (A `feature-2` está ali pois foi anteriormente pushada pelo desenvolvedor e ainda não foi finalizada).
