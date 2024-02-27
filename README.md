@@ -450,6 +450,4 @@ Também vale lembrar que a Issue precisa ser finalizada. Portanto é necessário
 
 ## Merge
 
-aaa
-
-asa
+Em implementação.
