@@ -367,7 +367,89 @@ Uma issue, quando finalizada, pode ser fechada com um **Pull Request**.
 
 Um pull request é uma solicitação de contribuição. Ele é usado para solicitar que as alterações feitas em uma branch sejam mergeadas com a branch desejada, que receberá, de acordo com as regras estabelecidas pela equipe do projeto, as melhorias desenvolvidas pela equipe. Um pull request pode ser revisado, aprovado, recusado, comentado, entre outras ações. Após ser aprovado, o pull request é mergeado com a branch e a issue é fechada automaticamente.
 
+Observe, na imagem abaixo, que existem quatro _tasks_ para serem desenvolvidas, sendo que duas estão em andamento. Quando a _task_ com o status `In progress` for finalizada, ela será movida para a coluna `In review`, que é quando alguém que faz parte do projeto, de preferência não o próprio desenvolvedor que solucionou a `task`, fará a revisão do código.
 
+![Kanban com Issues em andamento](img/kanban-branch.png)
+
+O processo que seguiu-se, neste exemplo abaixo, foi o seguinte:
+
+1. Criação de um novo `Draft` na coluna `Backlog`
+2. O `Draft` foi convertido em uma nova `Issue`
+3. A `Issue` foi movida para a coluna `In progress` pelo(a) desenvolvedor(a) que a requisitou ou que foi atribuído(a)
+4. O desenvolvedor executou o comando `git checkout development` para mudar para a branch `development`, que é branch que mantém uma versão do sistema a ler lançada
+5. O desenvolvedor executou o comando `git pull origin development` para atualizar a branch `development` com as alterações que foram feitas por outros membros do projeto
+6. O desenvolvedor executou o comando `git checkout -b feature-3` para criar uma nova branch chamada `feature-3`
+7. O desenvolvedor implementou então as alterações correspondentes com a `Issue`, adicionou imagens, arquivos, ou qualquer recurso que condiza com o especificado na `Issue`
+8. O desenvolvedor executou o comando `git add .` para adicionar todos os arquivos que foram criados ou alterados
+9. O desenvolvedor executou o comando `git commit -m "feat: Especificado como realizar checkout e criação de nova branch`
+10. O desenvolvedor executou o comando `git push origin feature-3` para enviar as alterações para o repositório remoto
+
+Pronto! Agora o código foi enviado para o GitHub e está na branch `feature-3`. As branches ativas no repositório remoto agora são `main`, `development` e `feature-3` (A `feature-2` está ali pois foi anteriormente pushada pelo desenvolvedor e ainda não foi finalizada).
+
+A imagem abaixo apresenta as branches que estão ativas no repositório remoto.
+
+![Branches ativas no repositório remoto](img/branches.png)
+
+Na parte superior da imagem acima, há uma mensagem de aviso, indicando que a branch `feature-3` foi recentemente pushada para o repositório remoto. No lado direito deste aviso há um botão com a mensagem para realizar o `Compare & pull request`. Este botão é clicado para que o desenvolvedor possa criar um novo `Pull Request`. Clicando neste botão, o desenvolvedor será direcionado para a página de criação de um novo `Pull Request`, que corresponde com a imagem abaixo.
+
+![Criação de um novo Pull Request](img/pull-request.png)
+
+Observe que, na imagem acima, o desenvolvedor está criando um novo `Pull Request` para a branch `development`. O desenvolvedor está informando que a `Issue` #3 foi finalizada e que a branch `feature-3` está pronta para ser mergeada com a branch `development`. O desenvolvedor também está informando que a `Issue` #3 foi finalizada com o título `Refactor #3`.
+
+Também, ao realizar a `Pull request`, o desenvolvedor atribuiu um `Reviewer`, que é a pessoa que fará a revisão do código. Também é possível colocar alguns `labels`, que são como _tags_ para classificar a `Pull request`. Também é possível colocar um `Project` e uma `Milestone` para a `Pull request`, assim como uma `Description`. Se você rolar a página para baixo, verá que é possível visualizar as alterações que foram feitas na branch `feature-3` e que serão mergeadas com a branch `development`. O próprio GitHub detecta as alterações nos documentos, documentos adicionados, mensagens de commit, entre outros. Voltando para a parte superior da imagem, há, ao lado dos nomes das branches envolvidas, uma mensagem `_Able to merge_`. Isso significa que as branches podem ser mergeadas. Se houver algum problema, o GitHub informará que as branches não podem ser mergeadas e informará o motivo.
+
+> As branches poderão ter conflitos ao tentar executar as `Pull requests`. Isso acontece quando duas ou mais pessoas alteram a mesma linha de um arquivo. Digamos que duas anterior a este `Pull request` a branch `development` já havia sido atualizada com as alterações da branch `feature-2`. Agora, a branch `feature-3` também está tentando ser mergeada com a branch `development`. Se houver conflitos, o GitHub informará que as branches não podem ser mergeadas e informará o motivo. O desenvolvedor deverá resolver os conflitos e tentar novamente realizar a `Pull request`.
+
+Como neste caso há a possibilidade de ***mergear*** (isso não existe, é informal - merge é o correto), ou seja, unir os códigos das duas branches, o desenvolvedor poderá clicar no botão `Create pull request`. Após clicar neste botão, o desenvolvedor será direcionado para a página de revisão do `Pull Request`, que corresponde com a imagem abaixo.
+
+![Revisão do Pull Request](img/merge.png)
+
+Neste momento não há mais o que o desenvolvedor fazer nesta `Issue`. A próxima evolução que poderá ocorrer aqui dependerá do usuário reviewer, que é o `fabioldm`, que é o usuário que fará a revisão do código. O revisor poderá aprovar, recusar, comentar, entre outras ações. Após ser aprovado, o pull request é mergeado com a branch e a issue é fechada automaticamente.
+
+As imagens que serão apresentadas abaixo demonstram as etapas que seguiram para a realização de uma alteração, que foi feita na branch `feature-3`, e que foi mergeada com a branch `development`. Inclusive, no que respeita a `Issue` #3, que foi finalizada com o título `Refactor #3`, e que foi fechada automaticamente após o merge, a Branch criada, `feature-3`, foi deletada, pois não há mais necessidade de mantê-la ativa. Contudo, ao analisar os commits que foram feitos, observa-se o atendimento do padrão de mensagens de commit, considerando que este foi um `refactor`.
+
+Na imagem seguinte, o usuário `fabioldm` recebeu uma notificação indicando que foi atribuído como revisor do `Pull Request`.
+
+![Notificação de revisão do Pull Request](img/review/review.png)
+
+Ao abrir a notificação, o usuário será direcionado para a review do `Pull Request`. Na imagem abaixo, precisamente no canto superior direito há um botão com a mensagem `_Add your review_`.
+
+![Revisão do Pull Request](img/review/review-1.png)
+
+Quando o usuário clicar neste botão, ele será direcionado para a página de revisão do `Pull Request`. Então o GitHub apresentará quais foram as alterações que ele terá de revisar nesta `Pull Request`. Na imagem abaixo, precisamente no canto superior direito há um botão com a mensagem `_Review changes_`.
+
+![Revisão do Pull Request](img/review/review-2.png)
+
+Ao clicar no botão `_Review changes_`, o usuário terá a opção de deixar um comentário apenas, também poderá aprovar a `Pull Request` ou solicitar alterações. A imagem abaixo apresenta em detalhes as opções que o GitHub fornece.
+
+![Revisão do Pull Request](img/review/review-3.png)
+
+Após tomar a decisão condizente com a análise que foi realizada, o usuário poderá clicar no botão `_Submit review_`. Após clicar neste botão, o GitHub então direcionará o usuário para uma próxima página, mostrando que será possível realizar o merge, ou seja, unir as branches. A imagem abaixo apresenta a mensagem que o GitHub fornece.
+
+![Revisão do Pull Request](img/review/review-4.png)
+
+Quando o revisor clicar na opção que está na parte inferior da imagem, com a descrição `Merge pull request`, o GitHub então realizará o merge das branches. A imagem abaixo apresenta a mensagem que o GitHub apresentará para o usuário.
+
+![Revisão do Pull Request](img/review/review-5.png)
+
+Então, ao confirmar o Merge (`Confirm merge`), o GitHub unirá os códigos das branches. Neste momento a Pull Request será fechada automaticamente. A imagem abaixo apresenta a mensagem que o GitHub apresentará para o usuário.
+
+![Revisão do Pull Request](img/review/review-6.png)
+
+Ficará o registro da exclusão da branch que foi _mergeada_. A imagem abaixo apresenta a mensagem que o GitHub apresentará para o usuário.
+
+![Revisão do Pull Request](img/review/review-7.png)
+
+Também vale lembrar que a Issue precisa ser finalizada. Portanto é necessário retornar ao Project e abrir a Issue correspondente com a `Pull Request` que foi fechada. Ao abrir a Issue, o usuário terá a opção de fechar a Issue (`Close issue`). A imagem abaixo apresenta a mensagem que o GitHub apresentará para o usuário.
+
+![Revisão do Pull Request](img/review/review-8.png)
+
+> Nestas etapas demonstradas acima por meio do uso de imagens não houve qualquer conflito entre os códigos que foram mergeados. Os conflitos podem ocorrer quando duas ou mais pessoas alteram a mesma linha de um arquivo, por exemplo. Se houver conflitos, o GitHub informará que as branches não podem ser mergeadas e informará o motivo. O desenvolvedor deverá resolver os conflitos e tentar novamente realizar a `Pull request`. O conflito pode ocorrer da seguinte forma: Dois ou mais desenvolvedores criaram branches à partir da branch `development`. Portanto, se um desenvolvedor fez um `Pull request` para a branch `development` que altere o arquivo `index.html`, e outro desenvolvedor fez um `Pull request` para a branch `development` que altere o mesmo arquivo `index.html`, o GitHub irá detectar que a versão da branch `development` não é a mesma que o segundo usuário possui. Então apresentará os conflitos que existem no arquivo.
+
+> Caso você queira ver como o GitHub apresenta os conflitos na hora de realizar o `Pull request`, [clique aqui](git/conflitos.md).
 
 ## Merge
 
+aaa
+
+asa
